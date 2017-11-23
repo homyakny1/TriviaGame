@@ -1,14 +1,38 @@
 <!doctype html>
 <html lang="en-US">
-    <head>
-        <title>Break Your Brain. Trivia Game!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet " type="text/css" href="assets/css/styles.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
-    <body>
 
-        <script type="text/javascript" src="assets/javascript/game.js"></script>
-    </body>
+<head>
+    <title>Break Your Brain. Trivia Game!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet " type="text/css" href="assets/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <video id="bgVideo" autoplay loop muted width="100%">
+            <source src="assets/media/videoplayback.mp4" type="video/mp4" />
+            <source src="assets/media/videoplayback.webm" type="video/webm" />
+        </video>
+        <div classs="row">
+            <div class="col-xs-12 main-page">
+                <div class="panel panel-transparent">
+                    <div class="panel-heading panel-transparent">
+                        <img class="mainImg img-responsive center-block" id="breakYour" src="assets/media/break_your.png">
+                        <img class="mainImg img-responsive center-block" id="brain" src="assets/media/brain.png">
+                        <img class="mainImg img-responsive center-block" id="trivia" src="assets/media/trivia_game.png">
+                    </div>
+                    <div class="panel-body panel-transparent">
+                        <button class="center-block" id="startGame">
+                            <img class="img-responsive center-block" id="startBttn" src="assets/media/start.png">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+
 </html>
