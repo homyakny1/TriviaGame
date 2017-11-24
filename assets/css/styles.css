@@ -1,5 +1,15 @@
+body{
+    font-family: 'Bubblegum Sans', cursive;
+    text-align: center;
+}
 .container{
     margin-top: 2%;
+}
+#rulesBttn{
+    width: 300px;
+}
+#rules{
+    width: 900px;
 }
 .mainImg{
     margin-top: -4%;
@@ -24,4 +34,21 @@ video#bgVideo {
 button{
     border-radius: 10px;
     background-color: rgba(214, 214, 214, 0.753); 
+}
+.questionDiv{
+    margin:5%;
+}
+.answerBttn{
+    margin:1%;
+    width:98%;
+}
+.timerDiv{
+    border-radius: 10px;
+    background: rgba(236, 236, 236, 0.5); 
+}
+#seconds{
+    font-size: 40px;
+}
+#correctAnswer{
+    width: 250px;
 }

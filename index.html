@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet " type="text/css" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -16,14 +17,28 @@
             <source src="assets/media/videoplayback.webm" type="video/webm" />
         </video>
         <div classs="row">
-            <div class="col-xs-12 main-page">
-                <div class="panel panel-transparent">
-                    <div class="panel-heading panel-transparent">
+            <div class="col-xs-12 main-page" style="display:block">
+                <div class="panel">
+                    <div class="panel-heading">
                         <img class="mainImg img-responsive center-block" id="breakYour" src="assets/media/break_your.png">
                         <img class="mainImg img-responsive center-block" id="brain" src="assets/media/brain.png">
                         <img class="mainImg img-responsive center-block" id="trivia" src="assets/media/trivia_game.png">
                     </div>
-                    <div class="panel-body panel-transparent">
+                    <div class="panel-body">
+                        <button class="center-block" id="showRules">
+                            <img class="img-responsive center-block" id="rulesBttn" src="assets/media/rulesBttn.png">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div classs="row">
+            <div class="col-xs-12 rules-page" style="display:none">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <img class="img-responsive center-block" id="rules" src="assets/media/rules.png">
+                    </div>
+                    <div class="panel-body">
                         <button class="center-block" id="startGame">
                             <img class="img-responsive center-block" id="startBttn" src="assets/media/start.png">
                         </button>
@@ -31,6 +46,66 @@
                 </div>
             </div>
         </div>
+        <div classs="row">
+            <div class="col-xs-12 questions" style="display:none">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="questionDiv">
+                            <!-- Question -->
+                            <h1 id="question"></h1>
+                        </div>
+                        <div class="answerDiv">
+                            <!-- First Answer -->
+                            <button class="center-block answerBttn">
+                                <h3 id="firstAnswer"></h3>
+                            </button>
+                            <!-- Second Answer -->
+                            <button class="center-block answerBttn">
+                                <h3 id="secondAnswer"></h3>
+                            </button>
+                            <!-- Third Answer -->
+                            <button class="center-block answerBttn">
+                                <h3 id="thirdAnswer"></h3>
+                            </button>
+                            <!-- Forth Answer -->
+                            <button class="center-block answerBttn">
+                                <h3 id="forthAnswer"></h3>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div clas "row">
+                    <div class="col-xs-4"></div>
+                    <div class=" col-xs-4 timerDiv">
+                        <h3 id="timerName">Timer</h3>
+                        <span id="seconds">0</span>
+                    </div>
+                    <div class="col-xs-4"></div>
+                </div>
+            </div>
+        </div>
+        <div classs="row">
+            <div class="col-xs-12 result" style="display:none">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h1 id="correctOrWrong"></h1>
+                        <img class="img-responsive center-block" id="correctAnswer" src="assets/media/wrong.gif">
+                        <h1 id="answer"></h1>
+                        <h1 id="explanation"></h1>
+                        <div class="col-xs-4"></div>
+                    </div>
+                </div>
+                <div clas "row">
+                    <div class="col-xs-4"></div>
+                    <div class=" col-xs-4 timerDiv">
+                        <h3 id="timerName">Next question</h3>
+                        <span id="seconds">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
