@@ -1,21 +1,26 @@
 <!doctype html>
 <html lang="en-US">
-
 <head>
     <title>Break Your Brain. Trivia Game!</title>
+    <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Local css -->
     <link rel="stylesheet " type="text/css" href="assets/css/styles.css">
+    <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
+    <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="container">
+        <!-- Background Video Files -->
         <video id="bgVideo" autoplay loop muted width="100%">
             <source src="assets/media/videoplayback.mp4" type="video/mp4" />
             <source src="assets/media/videoplayback.webm" type="video/webm" />
         </video>
+        <!-- First row, (main page) with the name of the game and rules buttom -->
         <div classs="row">
             <div class="col-xs-12 main-page" style="display:block">
                 <div class="panel">
@@ -32,6 +37,7 @@
                 </div>
             </div>
         </div>
+        <!-- Second row, (second page) with rules, and start button -->
         <div classs="row">
             <div class="col-xs-12 rules-page" style="display:none">
                 <div class="panel">
@@ -46,6 +52,7 @@
                 </div>
             </div>
         </div>
+        <!-- Third row, (question page), this page is going to contain question and 4 answers. Timer is on the buttom of the page -->
         <div classs="row">
             <div class="col-xs-12 questions" style="display:none">
                 <div class="panel">
@@ -57,40 +64,42 @@
                         <div class="answerDiv">
                             <!-- First Answer -->
                             <button class="center-block answerBttn">
-                                <h3 id="firstAnswer"></h3>
+                                <h3 id="answer1"></h3>
                             </button>
                             <!-- Second Answer -->
                             <button class="center-block answerBttn">
-                                <h3 id="secondAnswer"></h3>
+                                <h3 id="answer2"></h3>
                             </button>
                             <!-- Third Answer -->
                             <button class="center-block answerBttn">
-                                <h3 id="thirdAnswer"></h3>
+                                <h3 id="answer3"></h3>
                             </button>
                             <!-- Forth Answer -->
                             <button class="center-block answerBttn">
-                                <h3 id="forthAnswer"></h3>
+                                <h3 id="answer4"></h3>
                             </button>
                         </div>
                     </div>
                 </div>
+                <!-- Row for the timer -->
                 <div clas "row">
                     <div class="col-xs-4"></div>
                     <div class=" col-xs-4 timerDiv">
                         <h3 id="timerName">Timer</h3>
-                        <span id="seconds">0</span>
+                        <span id="gameTimer"></span>
                     </div>
                     <div class="col-xs-4"></div>
                 </div>
             </div>
         </div>
+        <!-- 4th row to show correct answer and explanation why this answer is correct. -->
         <div classs="row">
             <div class="col-xs-12 result" style="display:none">
                 <div class="panel">
                     <div class="panel-heading">
                         <h1 id="correctOrWrong"></h1>
-                        <img class="img-responsive center-block" id="correctAnswer" src="assets/media/wrong.gif">
-                        <h1 id="answer"></h1>
+                        <img class="img-responsive center-block" id="yesORno" src="assets/media/wrong.gif">
+                        <h1 id="correctAnswer"></h1>
                         <h1 id="explanation"></h1>
                         <div class="col-xs-4"></div>
                     </div>
@@ -98,8 +107,7 @@
                 <div clas "row">
                     <div class="col-xs-4"></div>
                     <div class=" col-xs-4 timerDiv">
-                        <h3 id="timerName">Next question</h3>
-                        <span id="seconds">0</span>
+                        <h3 id="nextQ">Next question</h3>
                     </div>
                 </div>
             </div>
