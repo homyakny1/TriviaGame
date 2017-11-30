@@ -243,6 +243,12 @@ $(document).ready(function() {
         });
     };
 
+    //...............................................
+    //
+    //  ...When next button pressed, load next question.
+    //
+    //...............................................
+
     $(document).on("click", "#nextQ", function () {
         currentQ++;
         $(".result").css("display", "none");
@@ -250,11 +256,15 @@ $(document).ready(function() {
         insertQuestions();
     });
 
+    //...............................................
+    //
+    //  ...When reset button pressed, resets game.
+    //
+    //...............................................
+
     $("#reset").on("click", function(){
         currentQ = 0;
         right = 0;
-        correctA = "";
-        pressedA = "";
         $(".rules-page").css("display", "block");
         $(".questions").css("display", "none");
         $(".result").css("display", "none");
