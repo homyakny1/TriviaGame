@@ -19,7 +19,7 @@ $(document).ready(function () {
         "answer3": "None",
         "answer4": "What?",
         "correctAnswer": "Twelve",
-        "explanation": "Fish don’t drown!",
+        "explanation": "Fish do not drown!",
     };
 
     var q3 = {
@@ -27,19 +27,19 @@ $(document).ready(function () {
         "answer1": "One",
         "answer2": "Two",
         "answer3": "Four",
-        "answer4": "Circle… Sides?",
+        "answer4": "Circle, Sides?",
         "correctAnswer": "Two",
         "explanation": "An inside and an outside.",
     };
 
     var q4 = {
-        "question": "What does 2+2×2 equal?",
+        "question": "What does 2+2x2 equal?",
         "answer1": "Eight",
         "answer2": "Six",
         "answer3": "Four",
         "answer4": "Can you stop it?",
         "correctAnswer": "Six",
-        "explanation": "Multiply before addition. 2×2=4, 4+2=6",
+        "explanation": "Multiply before addition. 2x2=4, 4+2=6",
     };
 
     var q5 = {
@@ -57,7 +57,7 @@ $(document).ready(function () {
         "answer1": "Iron of course!",
         "answer2": "Cotton",
         "answer3": "Equal",
-        "answer4": "What's a ton?",
+        "answer4": "What is a ton?",
         "correctAnswer": "Equal",
         "explanation": "Ton = ton, even if you weight iron and catton.",
     };
@@ -67,9 +67,9 @@ $(document).ready(function () {
         "answer1": "Full hole of dirt",
         "answer2": "24 cubic feet",
         "answer3": "None",
-        "answer4": "It's a huge hole!",
+        "answer4": "It is a huge hole!",
         "correctAnswer": "None",
-        "explanation": "There is no dirt in a hole, or it wouldn’t be hole",
+        "explanation": "There is no dirt in a hole, or it would not be hole",
     };
 
     var q8 = {
@@ -79,7 +79,7 @@ $(document).ready(function () {
         "answer3": "Bird",
         "answer4": "No one",
         "correctAnswer": "No one",
-        "explanation": "Because you can't get a banana from a coconut tree!",
+        "explanation": "Because you can not get a banana from a coconut tree!",
     };
 
     var q9 = {
@@ -101,12 +101,14 @@ $(document).ready(function () {
         "correctAnswer": "She kicks the ball straight up in the air",
         "explanation": "It goes up and then down.",
     };
-    
+
     var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
     var intervalId;
     var gameTimer = 20;
     var currentQ = 0;
     var questionABC = qArray[currentQ];
+    var right = 0;
+    var wrong = 0;
 
     // ...Main page, when rules button pressed, it's going to hide main page, and unhide rules page
     $("#rulesBttn").on("click", function () {
@@ -118,7 +120,6 @@ $(document).ready(function () {
         insertQuestions();
         $(".rules-page").css("display", "none"); //  ...rules page
         $(".questions").css("display", "block"); //  ...question page
-        gmTimer();
     });
 
 
@@ -145,7 +146,7 @@ $(document).ready(function () {
             stop();
             //  ...display result correct answer page
             $(".questions").css("display", "none");
-            $(".result").css("display","block");
+            $(".result").css("display", "block");
             $("#correctOrWrong").text("Your time is up.")
         };
     };
@@ -154,20 +155,43 @@ $(document).ready(function () {
 
         //  ...Clears intervalId
         clearInterval(intervalId);
+        gameTimer = 20;
     };
 
     function insertQuestions(selectQuestion) {
-        $.each(qArray[currentQ], function (key,value) {
-            $("#" + key).attr("data-name",value);
-            $("#" + key).text(value);
+
+        gmTimer();
+        $.each(qArray[currentQ], function (key, value) {
+            $("#" + key).attr("data-name", value);
+            $("#" + key).html("<h1>" + value + "</h1>");
         });
         var correctA = (qArray[currentQ].correctAnswer);
         console.log(correctA);
-        $(document).on("click", ".answerBttn", function(){
-            var pressedA = ;
-
+        $(document).on("click", ".a", function () {
+            stop()
+            var pressedA = $(this).attr("data-name")
+            console.log(pressedA)
+            if (currentQ <= 9) {
+                $(".questions").css("display", "none");
+                $(".result").css("display", "block");
+                if (pressedA === correctA) {
+                    right++;
+                    $("#yesORno").attr("src", "assets/media/correct.gif")
+                    $("#correctOrWrong").text("Correct!")
+                } else {
+                    wrong++;
+                    $("#yesORno").attr("src", "assets/media/wrong.gif")
+                    $("#correctOrWrong").text("Wrong =(")
+                };
+            } else {
+                alert("finsihed")
+            }
         });
     };
-
-
+    $(document).on("click", "#nextQ", function () {
+        currentQ++;
+        $(".result").css("display", "none");
+        $(".questions").css("display", "block");
+        insertQuestions();
+    });
 });
