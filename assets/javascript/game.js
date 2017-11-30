@@ -1,6 +1,10 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
+    //...............................................
+    //
     // ...vars for questions, answers and explanation 
+    //
+    //...............................................
 
     var q1 = {
         "question": "If there are 6 apples and you take away 4, how many do you have?",
@@ -102,26 +106,47 @@ $(document).ready(function () {
         "explanation": "It goes up and then down.",
     };
 
+    //...............................................
+    //
+    // ...vars for game stats
+    //
+    //...............................................
+
     var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
     var intervalId;
     var gameTimer = 20;
     var currentQ = 0;
     var questionABC = qArray[currentQ];
     var right = 0;
-    var wrong = 0;
 
+    //...............................................
+    //
     // ...Main page, when rules button pressed, it's going to hide main page, and unhide rules page
+    //
+    //...............................................
+    
     $("#rulesBttn").on("click", function () {
         $(".main-page").css("display", "none"); //  ...main page hides
         $(".rules-page").css("display", "block"); //  ...rules page shows
     });
+    
+    //...............................................
+    //
     // ...Rules page, when start button pressed, it's going to hide rules page, and unhide question page
+    //
+    //...............................................
+    
     $("#startBttn").on("click", function () {
         insertQuestions();
         $(".rules-page").css("display", "none"); //  ...rules page
         $(".questions").css("display", "block"); //  ...question page
     });
 
+    //...............................................
+    //
+    //  ...Function for timer 
+    //
+    //...............................................
 
     function gmTimer() {
         var gameTimer = 20;
@@ -129,69 +154,112 @@ $(document).ready(function () {
         intervalId = setInterval(decrement, 1000);
     };
 
+    //...............................................
+    //
     //  ...The decrement function.
+    //
+    //...............................................
+    
     function decrement() {
 
-        //  ...Decrease number by one.
-        gameTimer--;
+        gameTimer--; //  ...Decrease number by one.
 
-        //  ...Show the number in the #show-number tag.
-        $("#gameTimer").html("<h2>" + gameTimer + "</h2>");
+        $("#gameTimer").html("<h2>" + gameTimer + "</h2>"); //  ...Show the number in the #show-number tag.
 
+        if (gameTimer === 0) {  //  ...Once number hits zero...
 
-        //  ...Once number hits zero...
-        if (gameTimer === 0) {
-
-            //  ...run the stop function.
-            stop();
-            //  ...display result correct answer page
+            stop();//  ...run the stop function.
+            
             $(".questions").css("display", "none");
             $(".result").css("display", "block");
-            $("#correctOrWrong").text("Your time is up.")
+            $("#correctOrWrong").text("Your time is up.")  //  ...hide question page, display result page, and let player know that thir time is up
         };
     };
 
+    //...............................................
+    //
+    //  ...Clear intervalID. (stop timer)
+    //
+    //...............................................
+
     function stop() {
 
-        //  ...Clears intervalId
         clearInterval(intervalId);
         gameTimer = 20;
+
     };
+
+    //...............................................
+    //
+    //  ...Function to insert question and answers in to a question page.
+    //
+    //...............................................
 
     function insertQuestions(selectQuestion) {
 
-        gmTimer();
-        $.each(qArray[currentQ], function (key, value) {
+        gmTimer(); // ...starts timer when question inserted
+
+        $.each(qArray[currentQ], function (key, value) { // ...displays question is HTML
             $("#" + key).attr("data-name", value);
             $("#" + key).html("<h1>" + value + "</h1>");
         });
+
         var correctA = (qArray[currentQ].correctAnswer);
-        console.log(correctA);
-        $(document).on("click", ".a", function () {
+        console.log(correctA);                           // ...console log right question and var to store right question.
+
+        $(document).on("click", ".a", function () {      // ...When answer button clicked, does following.
             stop()
-            var pressedA = $(this).attr("data-name")
-            console.log(pressedA)
-            if (currentQ <= 9) {
+            var pressedA = $(this).attr("data-name")     // ...stores data stored in a answer button
+            
+            if (currentQ <= 8) {                         // ...if not all questions have been asked continue asking questions
                 $(".questions").css("display", "none");
                 $(".result").css("display", "block");
-                if (pressedA === correctA) {
+                
+                if (pressedA === correctA) {             // ...if correct answer equal to the answer player pressed does following
                     right++;
                     $("#yesORno").attr("src", "assets/media/correct.gif")
                     $("#correctOrWrong").text("Correct!")
-                } else {
-                    wrong++;
+                } else {                                 // ...if correct answer don't equal to the answer player pressed does following
                     $("#yesORno").attr("src", "assets/media/wrong.gif")
                     $("#correctOrWrong").text("Wrong =(")
                 };
-            } else {
-                alert("finsihed")
+            } else {  
+                $(".questions").css("display", "none");
+                $(".result").css("display", "block");
+                $("#nextQ").hide()
+                
+                if (pressedA === correctA) {             // ...if correct answer equal to the answer player pressed does following
+                    right++;
+                    $("#yesORno").attr("src", "assets/media/correct.gif")
+                    $("#correctOrWrong").text("Correct!")
+                } else {                                 // ...if correct answer don't equal to the answer player pressed does following
+                    $("#yesORno").attr("src", "assets/media/wrong.gif")
+                    $("#correctOrWrong").text("Wrong =(")
+                };                                  // ...when all the questions have been asked, show final resul page
+                $(".questions").css("display", "none");
+                $(".finalResults").css("display", "block");
+                $("#correctA").text("You answered "+right+" out of 10 questions correctly. Good Job.")
             }
         });
     };
+
     $(document).on("click", "#nextQ", function () {
         currentQ++;
         $(".result").css("display", "none");
         $(".questions").css("display", "block");
         insertQuestions();
     });
+
+    $("#reset").on("click", function(){
+        currentQ = 0;
+        right = 0;
+        correctA = "";
+        pressedA = "";
+        $(".rules-page").css("display", "block");
+        $(".questions").css("display", "none");
+        $(".result").css("display", "none");
+        $(".finalResults").css("display", "none");
+        $("#nextQ").show()
+        console.log(right)
+    })
 });
